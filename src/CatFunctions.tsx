@@ -1,6 +1,8 @@
+import { serialize } from 'v8'
 import { CatType } from './Interfaces'
 
-export const FilterFunction = (cats: CatType[], keyword: string[]): CatType[] => {
+
+export const filterFunction = (cats: CatType[], keyword: string[]): CatType[] => {
   return (
     cats.filter((cur: CatType) => {
         return (
@@ -14,6 +16,18 @@ export const FilterFunction = (cats: CatType[], keyword: string[]): CatType[] =>
   )
 }
 
-export const handlePagination = (arr: CatType[]): (CatType[])[] => {
-  return [arr, arr]
+//Divides array into smaller chunks
+export const paginate = (arr: CatType[], perPage: number): (CatType[])[] => {
+  const remainingArr: CatType[] = arr
+  console.log(arr)
+  const paginatedArr: (CatType[])[] = []
+  do {
+    const slicedCats: CatType[] = remainingArr.splice(0, perPage)
+    console.log('sliced: ', slicedCats)
+    paginatedArr.push(slicedCats)
+    console.log('paginatedArr is now: ', paginatedArr)
+    console.log(`remaining cats: ${remainingArr.length}`)
+  } while (remainingArr.length > 0);
+  console.log('paginated: ', paginatedArr)
+  return paginatedArr
 }

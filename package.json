@@ -21,7 +21,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest --watchAll",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",
-    "jest": "^27.5.1"
+    "jest": "^27.4.1",
+    "ts-jest": "^27.1.4"
   }
 }
