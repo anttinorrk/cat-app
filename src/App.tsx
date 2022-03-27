@@ -1,10 +1,10 @@
 import React, { FC, useState } from 'react'
 import './App.scss'
-import AxiosCats from './AxiosCats'
+import CatList from './CatList'
 import SearchForm from './SearchForm'
 
 const App: FC = (): JSX.Element => {
-  const [keyword, setKeyword] = useState<string[]>([])
+  const [keyword, setKeyword] = useState<string[]>([ '', '' ])
   const handleKeyword = (name: string, temperament: string) : void => {
     console.log([name, temperament])
     setKeyword([name, temperament])
@@ -15,7 +15,7 @@ const App: FC = (): JSX.Element => {
   return (
     <div className="App">
       <SearchForm keywordCallback={handleKeyword} />
-      <AxiosCats keyword={keyword} />
+      <CatList keyword={keyword} />
     </div>
   );
 }

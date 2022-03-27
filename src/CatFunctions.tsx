@@ -1,7 +1,7 @@
 import { serialize } from 'v8'
 import { CatType } from './Interfaces'
 
-
+//keyword has two parts: [0]name and [1]temperament
 export const filterFunction = (cats: CatType[], keyword: string[]): CatType[] => {
   return (
     cats.filter((cur: CatType) => {

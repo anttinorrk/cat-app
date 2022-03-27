@@ -1,48 +1,55 @@
-import React, { FC, useState } from 'react'
+import React, { FC, SyntheticEvent, useState } from 'react'
 import './SearchForm.scss'
 
-// atrCallback takes 2 values: search attribute and keyword
-const SearchForm: FC<any> = ({keywordCallback}) => {
-    //different attributes to search by
-    const searchAtrs: string[] = [
-        'catId',
-        'name',
-        'temperament'
-    ]
-    const handleSearch = (event: any) => {
-        event.preventDefault()
-        const formData = new FormData(event.target)
-        keywordCallback(formData.get('name'), formData.get('temperament'))
+interface FormProps {
+    keywordCallback: (name: string, temperament: string) => void
+}
+
+//SearcForm is responsible for providing search keywords
+//to parent component
+const SearchForm: FC<FormProps> = ({keywordCallback}) => {
+    
+    const [nameValue, setNameValue] = useState<string>('')
+    const [tempValue, setTempValue] = useState<string>('')
+
+    const handleName = (event: any) => {
+        console.log(event.target.value)
+        setNameValue(event.target.value)
     }
-    const temperaments: string[] = [
-        'Active',
-        'Affectionate',
-        'Curious',
-        ''
-    ]
+    const handleTemp = (event: any) => {
+        console.log(event.target.value)
+        setTempValue(event.target.value)
+    }
+    const handleSearch = (event: SyntheticEvent) => {
+        event.preventDefault()
+        console.log(nameValue, tempValue)
+        keywordCallback(nameValue, tempValue)
+    }
     
     return (
-        <section id='section1'>
+        <div className='formWrapper'>
             <form onSubmit={handleSearch}>
                 <label>
-                    Name:
                     <input 
                         type='text' 
                         name='name'
+                        placeholder='name'
+                        onChange={handleName}
                     />
                 </label>
                 <label>
-                    Temperament:
                 <input 
                     type='text'
                     name='temperament'
+                    placeholder='temperament'
+                    onChange={handleTemp}
                 />
                 </label>
                 <button type='submit'>Search</button>
                 </form>
                 
             
-        </section>
+        </div>
     )
 }
 
