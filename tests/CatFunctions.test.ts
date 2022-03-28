@@ -6,38 +6,66 @@ const testData: CatType[] = [
         catId: "1",
         name: "one",
         altNames: "",
+        description: "",
         weight: {imperial: "1-1", metric: "1-1"},
+        life: "",
         temperament: "cool",
         country: "FI",
-        image: {id: "", width: 100, height: 100, url: ""}
+        image: {id: "", width: 100, height: 100, url: ""},
+        wiki: "",
+        figures: {energy: 0, social: 0, intelligence: 0}
     },
     {
         catId: "2",
         name: "two",
         altNames: "",
-        weight: "1-1",
-        temperament: "cool"
+        description: "",
+        weight: {imperial: "1-1", metric: "1-1"},
+        life: "",
+        temperament: "cool",
+        country: "FI",
+        image: {id: "", width: 100, height: 100, url: ""},
+        wiki: "",
+        figures: {energy: 0, social: 0, intelligence: 0}
     },
     {
         catId: "3",
         name: "three",
         altNames: "",
-        weight: "1-1",
-        temperament: "cool"
+        description: "",
+        weight: {imperial: "1-1", metric: "1-1"},
+        life: "",
+        temperament: "cool",
+        country: "FI",
+        image: {id: "", width: 100, height: 100, url: ""},
+        wiki: "",
+        figures: {energy: 0, social: 0, intelligence: 0}
     },
     {
         catId: "4",
         name: "four",
         altNames: "",
-        weight: "1-1",
-        temperament: "cool"
+        description: "",
+        weight: {imperial: "1-1", metric: "1-1"},
+        life: "",
+        temperament: "cool",
+        country: "FI",
+        image: {id: "", width: 100, height: 100, url: ""},
+        wiki: "",
+        figures: {energy: 0, social: 0, intelligence: 0}
     },
     {
         catId: "5",
         name: "five",
         altNames: "",
-        weight: "1-1",
-        temperament: "cool"
+        description: "",
+        weight: {imperial: "1-1", metric: "1-1"},
+        life: "",
+        temperament: "cool",
+        country: "FI",
+        image: {id: "", width: 100, height: 100, url: ""},
+        wiki: "",
+        figures: {energy: 0, social: 0, intelligence: 0}
     }
 ]
 
