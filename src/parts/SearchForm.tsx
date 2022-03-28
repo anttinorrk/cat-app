@@ -1,4 +1,4 @@
-import React, { FC, SyntheticEvent, useState } from 'react'
+import React, { ChangeEvent, FC, SyntheticEvent, useState } from 'react'
 import './SearchForm.scss'
 
 interface FormProps {
@@ -22,6 +22,7 @@ const SearchForm: FC<FormProps> = ({keywordCallback}) => {
         setTempValue(event.target.value)
     }
     const handleSearch = (event: SyntheticEvent) => {
+        console.log(event.type)
         event.preventDefault()
         console.log(nameValue, tempValue)
         keywordCallback(nameValue, tempValue)

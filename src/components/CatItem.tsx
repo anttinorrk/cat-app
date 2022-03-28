@@ -1,16 +1,17 @@
 import React, { FC, useState } from 'react'
 import './CatItem.scss'
-import { CatType } from './Interfaces'
-import imgNotFound from './media/imgNotFound.jpg'
-import downArrow from './media/downArrow.svg'
+import { CatType } from '../components/Interfaces'
+import imgNotFound from '../media/imgNotFound.jpg'
+import downArrow from '../media/downArrow.svg'
 
 interface CatProps {
     catData: CatType;
 }
 
 const CatItem: FC<CatProps> = ({ catData }): JSX.Element => {
-  const [detailsVisible, setDetailsVisible] = useState<boolean>(false)
 
+  //Handles the visibility of detail box
+  const [detailsVisible, setDetailsVisible] = useState<boolean>(false)
   const handleDetails = () => {
     const current = detailsVisible
     setDetailsVisible(!current)

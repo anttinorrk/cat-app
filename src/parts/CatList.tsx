@@ -1,11 +1,11 @@
 import React, { FC, useEffect, useState } from 'react'
 import './CatList.scss'
 import axios from 'axios'
-import CatItem from './CatItem'
-import { filterFunction, paginateFunction } from './CatFunctions'
-import { CatType } from './Interfaces'
-import Pagination from './Pagination'
-import Loader from './Loader'
+import CatItem from '../components/CatItem'
+import { filterFunction, paginateFunction } from '../components/CatFunctions'
+import { CatType } from '../components/Interfaces'
+import Pagination from '../components/Pagination'
+import Loader from '../components/Loader'
 
 interface SearchProps {
     keyword: string[]
@@ -23,13 +23,13 @@ const CatList: FC<SearchProps> = ({keyword}): JSX.Element => {
     const [pageCount, setPageCount] = useState<number>(1)
     const [currentPage, setCurrentPage] = useState<number>(1)
 
-    //helper function to make sure that fetched attribute exists, not undefined
+    
+    //helper function to make sure that fetched attribute exists, as in is not undefined
     const check = (atr: any): any => {
         return atr === undefined ?  '' : atr
     }
     //fetches the json data from server
     //data is saved to variable 'cats'
-
     useEffect(() => {
         axios.get(url)
         .then((res: any) => {
@@ -71,7 +71,6 @@ const CatList: FC<SearchProps> = ({keyword}): JSX.Element => {
     //1 filteredCats is set to contain the cats to show to user
     //2 paginatedCats is set to divide them into chunks to view on one page
     //3 pageCount is set to how many pages the data is divided to
-
     useEffect(() => {
         console.log('started filtering effect')
         const filtered = filterFunction(cats, keyword)

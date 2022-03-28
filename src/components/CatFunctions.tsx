@@ -1,6 +1,8 @@
 import { CatType } from './Interfaces'
 
+
 //keyword has two parts: [0]name and [1]temperament
+//filterFunction returns array of cats filtered by the keyword
 export const filterFunction = (cats: CatType[], keyword: string[]): CatType[] => {
   return (
     cats.filter((cur: CatType) => {
@@ -15,7 +17,8 @@ export const filterFunction = (cats: CatType[], keyword: string[]): CatType[] =>
   )
 }
 
-//Divides array into smaller chunks
+
+//paginateFunction divides array into smaller chunks to view on different pages
 export const paginateFunction = (arr: CatType[], perPage: number): (CatType[])[] => {
   const remainingArr: CatType[] = arr
   const paginatedArr: (CatType[])[] = []

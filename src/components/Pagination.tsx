@@ -9,9 +9,12 @@ interface PaginationProps {
     currentPage: number;
 }
 
-const Pagination: FC<PaginationProps> = ({ pageCount, pageChangeCallback, perPageCallback, perPage, currentPage }) => {
+const Pagination: FC<PaginationProps> = ({ pageCount, pageChangeCallback, perPageCallback, perPage, currentPage }): JSX.Element => {
     
-    const pageArr = Array.from(Array(pageCount), (_, index) => index + 1)
+    //Array with values from 1 to pageCount
+    const pageArr: number[] = Array.from(Array(pageCount), (_, index) => index + 1)
+
+    //Handles the change of how many cat cards to view on one page
     const handlePerPage = () => {
         const newNumber = perPage === 10 ? 20 : 10
         pageChangeCallback(1)

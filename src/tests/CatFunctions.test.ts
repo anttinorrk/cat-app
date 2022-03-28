@@ -1,5 +1,5 @@
-import { paginateFunction, filterFunction } from '../src/CatFunctions'
-import { CatType } from '../src/Interfaces'
+import { paginateFunction, filterFunction } from '../components/CatFunctions'
+import { CatType } from '../components/Interfaces'
 
 const testData: CatType[] = [
     {
