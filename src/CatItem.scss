@@ -1,3 +1,113 @@
-.cat-item {
-    border-bottom: 2px solid #cccccc;
+$color1: #FBF8BE;
+$color2: #234E70;
+
+.cat-container {
+    margin: 10px;
+    min-width: 200px;
+    max-width: 600px;
+    h1,h2,h3,h4,p {
+        margin: 0;
+    }
 }
+
+/*CAT CARD*/
+.cat-card {
+    background-color: $color1;
+    overflow: hidden;
+    border-radius: 20px;
+    .img-container {
+        overflow: hidden;
+        height: 200px;
+        align-content: center;
+    }
+    .cat-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all .3s ease-in-out;
+    }
+    .title-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1em;
+    }
+    .triangle-icon {
+        width: 1.5em;
+    }
+}
+.cat-card:hover {
+    cursor: pointer;
+    .cat-img {
+        transform: scale(1.05);
+    }
+}
+
+
+/*DETAILS*/
+.cat-details {
+    border: 2px solid $color1;
+    border-radius: 20px;
+    padding: 0 20px;
+    margin: 10px 0;
+    .title-container {
+        margin: 1em 0;
+    }
+    .info-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: .5em;
+        border: 3px solid $color1;
+        margin-bottom: 1em;
+    }
+    .country-flag {
+        width: 2rem;
+        height: 100%;
+    }
+    .temperament-container {
+        font-style: italic;
+        margin-bottom: .5em;
+    }
+    /*FIGURES*/
+    .figures-container {
+        height: 75px;
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-end;
+        margin-bottom: 1em;
+        .figure-titled {
+            align-content: center;
+        }
+    }
+    .figure {
+        background-color: $color2;
+        width: 40px;
+        border-bottom: 2px solid black;
+    }
+    .size0 {
+        height: 0;
+    }
+    .size1 {
+        height: 10px;
+    }
+    .size2 {
+        height: 20px;
+    }
+    .size3 {
+        height: 30px;
+    }
+    .size4 {
+        height: 40px;
+    }
+    .size5 {
+        height: 50px;
+    }
+    .desc-container {
+        max-width: 100%;
+        overflow-wrap: break-word;
+        margin-bottom: 1em;
+    }
+}
+
+

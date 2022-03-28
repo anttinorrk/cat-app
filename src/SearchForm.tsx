@@ -12,6 +12,7 @@ const SearchForm: FC<FormProps> = ({keywordCallback}) => {
     const [nameValue, setNameValue] = useState<string>('')
     const [tempValue, setTempValue] = useState<string>('')
 
+    //TODO: what is the type of event?
     const handleName = (event: any) => {
         console.log(event.target.value)
         setNameValue(event.target.value)
@@ -27,7 +28,7 @@ const SearchForm: FC<FormProps> = ({keywordCallback}) => {
     }
     
     return (
-        <div className='formWrapper'>
+        <div className='form-wrapper'>
             <form onSubmit={handleSearch}>
                 <label>
                     <input 
@@ -38,17 +39,15 @@ const SearchForm: FC<FormProps> = ({keywordCallback}) => {
                     />
                 </label>
                 <label>
-                <input 
-                    type='text'
-                    name='temperament'
-                    placeholder='temperament'
-                    onChange={handleTemp}
-                />
+                    <input 
+                        type='text'
+                        name='temperament'
+                        placeholder='temperament'
+                        onChange={handleTemp}
+                    />
                 </label>
                 <button type='submit'>Search</button>
-                </form>
-                
-            
+            </form>            
         </div>
     )
 }

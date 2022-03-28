@@ -4,13 +4,12 @@ import CatList from './CatList'
 import SearchForm from './SearchForm'
 
 const App: FC = (): JSX.Element => {
+
   const [keyword, setKeyword] = useState<string[]>([ '', '' ])
   const handleKeyword = (name: string, temperament: string) : void => {
     console.log([name, temperament])
     setKeyword([name, temperament])
   }
-
-  
 
   return (
     <div className="App">

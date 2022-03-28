@@ -5,7 +5,7 @@ const Loader = () => {
   return (
     <div align='center'>
         <TailSpin
-            color='#111111'
+            color='#234E70'
         />
     </div> 
   )

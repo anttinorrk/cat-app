@@ -1,0 +1,23 @@
+$color1: #FBF8BE;
+$color2: #234E70;
+
+.pagination-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    div {
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+    }
+    p {
+        margin-right: 10px;
+    }
+    .highlighted {
+        background-color: $color1;
+    }
+    .highlighted:hover {
+        color: white;
+        background-color: $color2;
+    }
+}

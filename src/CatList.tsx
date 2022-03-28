@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react'
 import './CatList.scss'
 import axios from 'axios'
 import CatItem from './CatItem'
-import { filterFunction, paginate } from './CatFunctions'
+import { filterFunction, paginateFunction } from './CatFunctions'
 import { CatType } from './Interfaces'
 import Pagination from './Pagination'
 import Loader from './Loader'
@@ -23,8 +23,8 @@ const CatList: FC<SearchProps> = ({keyword}): JSX.Element => {
     const [pageCount, setPageCount] = useState<number>(1)
     const [currentPage, setCurrentPage] = useState<number>(1)
 
-    //helper function to make sure that fetched attribute is string, not undefined
-    const check = (atr: any): string => {
+    //helper function to make sure that fetched attribute exists, not undefined
+    const check = (atr: any): any => {
         return atr === undefined ?  '' : atr
     }
     //fetches the json data from server
@@ -33,7 +33,7 @@ const CatList: FC<SearchProps> = ({keyword}): JSX.Element => {
     useEffect(() => {
         axios.get(url)
         .then((res: any) => {
-            console.log(res.data)
+            console.log('fetched data')
             const mappedData: CatType[] = (
                 res.data.map((cur: any) => {
                 return (
@@ -41,16 +41,27 @@ const CatList: FC<SearchProps> = ({keyword}): JSX.Element => {
                         catId: cur.id, 
                         name: cur.name,
                         altNames: check(cur.alt_names),
-                        weight: check(cur.weight.metric),
-                        temperament: check(cur.temperament)
+                        description: check(cur.description),
+                        weight: check(cur.weight),
+                        life: check(cur.life_span),
+                        temperament: check(cur.temperament),
+                        country: check(cur.country_code),
+                        image: check(cur.image),
+                        wiki: check(cur.wikipedia_url),
+                        figures: {
+                            energy: check(cur.energy_level),
+                            social: check(cur.social_needs),
+                            intelligence: check(cur.intelligence)
+
+                        }
                     }
                 )
                 })
             )
-            console.log(mappedData)
             setCats(mappedData)
             setFilteredCats(filterFunction(mappedData, ['','']))
             setFetchComplete(true)
+            console.log('saved fetched data')
         })
         .catch(error => console.log(error.response.status))
     }, [])
@@ -62,59 +73,53 @@ const CatList: FC<SearchProps> = ({keyword}): JSX.Element => {
     //3 pageCount is set to how many pages the data is divided to
 
     useEffect(() => {
-        console.log('effect with keyword: ', keyword)
-        console.log('cats is: ', cats)
+        console.log('started filtering effect')
         const filtered = filterFunction(cats, keyword)
-        console.log(filtered)
         setFilteredCats(filtered)
     }, [keyword, perPage])
     useEffect(() => {
-        console.log('effect with filtered cats: ', filteredCats)
-        const paginated = paginate(filteredCats, perPage)
+        console.log('started paginating effect')
+        const paginated = paginateFunction(filteredCats, perPage)
         setPaginatedCats(paginated)
     },[filteredCats])
     useEffect(() => {
-        console.log('effect with paginated: ', paginatedCats)
+        console.log('setting page count')
         setPageCount(paginatedCats.length)
     },[paginatedCats])
 
-    useEffect(() => {
-        console.log('CATS: ', cats)
-    },[cats])
-    useEffect(() => {
-        console.log('FILTERED: ', filteredCats)
-    },[filteredCats])
-    useEffect(() => {
-        console.log('PAGINATED: ', paginatedCats)
-    },[paginatedCats])
     
     //Called from child component Pagination to update current page
     const handlePageChange = (num: number) => {
         console.log(num)
-        setCurrentPage(num)
+        if (currentPage != num) {setCurrentPage(num)}
     }
-
     const handlePerPage = (num: number) => {
         setPerPage(num)
     }
-
+    
+    
+    const catPage = (
+        paginatedCats[currentPage - 1].map((cur: CatType) => {
+            return <CatItem key={cur.catId} catData={cur} />
+    }))
     return (
-        <>
-            <div className={`list-container${fetchComplete ? '' : ' hidden'}`}>
-                Page count: {pageCount}
-                <Pagination pageCount={pageCount} pageChangeCallback={handlePageChange} perPageCallback={handlePerPage} perPage={perPage} />
-                {
-                    paginatedCats[currentPage - 1].map((cur: CatType) => {
-                        return (
-                            <CatItem key={cur.catId} catData={cur} />
-                        )
-                    })
-                }
+        <div>
+            <Pagination 
+                pageCount={pageCount} 
+                pageChangeCallback={handlePageChange} 
+                perPageCallback={handlePerPage} 
+                perPage={perPage}
+                currentPage={currentPage} 
+            />
+            <div className='list-wrapper'>
+                <div className={`list-container${fetchComplete ? '' : ' hidden'}`}>
+                    {catPage}
+                </div>
+                <div className={`loader-wrapper${fetchComplete ? ' hidden' : ''}`}>
+                    <Loader />
+                </div>
             </div>
-            <div className={`loader-wrapper${fetchComplete ? ' hidden' : ''}`}>
-                <Loader />
-            </div>
-        </>
+        </div>
     )
 }
 

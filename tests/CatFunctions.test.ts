@@ -1,47 +1,54 @@
-import { paginate } from '../src/CatFunctions'
+import { paginateFunction, filterFunction } from '../src/CatFunctions'
 import { CatType } from '../src/Interfaces'
 
 const testData: CatType[] = [
     {
-        "catId": "1",
-        "name": "cat1",
-        "altNames": "",
-        "weight": "1-1",
-        "temperament": "cool"
+        catId: "1",
+        name: "one",
+        altNames: "",
+        weight: {imperial: "1-1", metric: "1-1"},
+        temperament: "cool",
+        country: "FI",
+        image: {id: "", width: 100, height: 100, url: ""}
     },
     {
-        "catId": "2",
-        "name": "cat2",
-        "altNames": "",
-        "weight": "1-1",
-        "temperament": "cool"
+        catId: "2",
+        name: "two",
+        altNames: "",
+        weight: "1-1",
+        temperament: "cool"
     },
     {
-        "catId": "3",
-        "name": "cat3",
-        "altNames": "",
-        "weight": "1-1",
-        "temperament": "cool"
+        catId: "3",
+        name: "three",
+        altNames: "",
+        weight: "1-1",
+        temperament: "cool"
     },
     {
-        "catId": "4",
-        "name": "cat4",
-        "altNames": "",
-        "weight": "1-1",
-        "temperament": "cool"
+        catId: "4",
+        name: "four",
+        altNames: "",
+        weight: "1-1",
+        temperament: "cool"
     },
     {
-        "catId": "5",
-        "name": "cat5",
-        "altNames": "",
-        "weight": "1-1",
-        "temperament": "cool"
+        catId: "5",
+        name: "five",
+        altNames: "",
+        weight: "1-1",
+        temperament: "cool"
     }
 ]
 
+test('filter function', () => {
+    const filtered = filterFunction(testData, ['one',''])
+    console.log(filtered)
+    expect(filtered.length).toBe(1)
+})
 
-test('paginate test data', () => {
-    const paginated = paginate(testData, 2)
+test('paginate function', () => {
+    const paginated = paginateFunction(testData, 2)
     expect(paginated.length).toBe(3)
-    expect(paginated.map(c=>c[0].name)).toEqual([ 'cat1', 'cat3', 'cat5' ])
+    expect(paginated.map(c=>c[0].name)).toEqual([ 'one', 'three', 'five' ])
 })
