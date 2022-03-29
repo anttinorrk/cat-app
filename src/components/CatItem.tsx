@@ -29,7 +29,7 @@ const CatItem: FC<CatProps> = ({ catData }): JSX.Element => {
           </div>
           <div className='title-container'>
             <h3>{catData.name}</h3>
-            <img className='triangle-icon' src={downArrow} alt='open details' />
+            <img className={`arrow-icon${detailsVisible ? ' up' : ''}`} src={downArrow} alt='open details' />
           </div>
       </div>
       <div className={`cat-details${detailsVisible ? '' : ' hidden'}`}>
